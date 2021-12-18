@@ -1,55 +1,41 @@
 <template>
-  <v-app>
-    <v-app-bar
-      app
-      color="primary"
-      dark
-    >
-      <div class="d-flex align-center">
-        <v-img
-          alt="Vuetify Logo"
-          class="shrink mr-2"
-          contain
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
-          transition="scale-transition"
-          width="40"
-        />
+<v-app>
+	<div>
+		<router-link to="/">Home</router-link>|
+		<router-link to="/about">About</router-link>|
 
-        <v-img
-          alt="Vuetify Name"
-          class="shrink mt-1 hidden-sm-and-down"
-          contain
-          min-width="100"
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
-          width="100"
-        />
-      </div>
+		<!-- NEW - add a route to the profile page -->
+		<router-link v-if="$auth.isAuthenticated" to="/profile">Profile</router-link>
 
-      <v-spacer></v-spacer>
-
-      <v-btn
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-        text
-      >
-        <span class="mr-2">Latest Release</span>
-        <v-icon>mdi-open-in-new</v-icon>
-      </v-btn>
-    </v-app-bar>
-
-    <v-main>
-      <router-view/>
-    </v-main>
-  </v-app>
+		<div v-if="!$auth.loading">
+			<!-- show login when not authenticated -->
+			<v-btn v-if="!$auth.isAuthenticated" @click="login">Log in</v-btn>
+			<!-- show logout when authenticated -->
+			<v-btn v-if="$auth.isAuthenticated" @click="logout">Log out</v-btn>
+    	</div>
+	</div>
+	<router-view />
+</v-app>
 </template>
 
 <script>
 
 export default {
-  name: 'App',
+	name: 'App',
 
-  data: () => ({
-    //
-  }),
+	data: () => ({
+		
+	}),
+	methods: {
+		login() {
+			this.$auth.loginWithRedirect();
+		},
+		// Log the user out
+		logout() {
+			this.$auth.logout({
+				returnTo: window.location.origin
+			});
+		}
+	},
 };
 </script>
