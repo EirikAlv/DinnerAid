@@ -5,7 +5,13 @@ import store from './store'
 import vuetify from './plugins/vuetify'
 
 // Import the Auth0 configuration
-import { domain, clientId } from "../auth_config.json";
+let domain = process.env.DOMAIN
+let clientId = process.env.CLIENTID
+if (!domain && !clientId) {
+	let config = require("../auth_config.json");
+	domain = config.domain;
+	clientId = config.clientId;
+}
 
 // Import the plugin here
 import { Auth0Plugin } from "./auth";
