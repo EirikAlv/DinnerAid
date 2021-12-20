@@ -26,6 +26,9 @@ export default {
 	data: () => ({
 		
 	}),
+	mounted () {
+		console.log("testing");
+	},
 	methods: {
 		login() {
 			this.$auth.loginWithRedirect();
