@@ -5,8 +5,8 @@ import store from './store'
 import vuetify from './plugins/vuetify'
 
 // Import the Auth0 configuration
-let domain = process.env.DOMAIN
-let clientId = process.env.CLIENTID
+let domain = process.env.VUE_APP_DOMAIN
+let clientId = process.env.VUE_APP_CLIENTID
 if (!domain && !clientId) {
 	// let config = require("../auth_config.json");
 	// domain = config.domain;
