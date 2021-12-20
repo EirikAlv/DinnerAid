@@ -12,8 +12,6 @@ if (!domain && !clientId) {
 	// domain = config.domain;
 	// clientId = config.clientId;
 }
-console.log(domain);
-console.log(clientId);
 
 // Import the plugin here
 import { Auth0Plugin } from "./auth";
