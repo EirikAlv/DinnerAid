@@ -23,6 +23,7 @@ export default {
       // Use Axios to make a call to the API
       const foo = `${process.env.VUE_APP_APIBASEURL}/api/external`;
       console.log(foo);
+      console.log(token);
       const { data } = await axios.get(`${process.env.VUE_APP_APIBASEURL ?? ''}/api/external`, {
         headers: {
           Authorization: `Bearer ${token}`    // send the access token through the 'Authorization' header
