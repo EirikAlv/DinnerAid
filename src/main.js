@@ -7,6 +7,7 @@ import vuetify from './plugins/vuetify'
 // Import the Auth0 configuration
 let domain = process.env.VUE_APP_DOMAIN
 let clientId = process.env.VUE_APP_CLIENTID
+let audience = process.env.VUE_APP_AUDIENCE
 if (!domain && !clientId) {
 	// let config = require("../auth_config.json");
 	// domain = config.domain;
@@ -20,6 +21,7 @@ import { Auth0Plugin } from "./auth";
 Vue.use(Auth0Plugin, {
   domain,
   clientId,
+  audience,
   onRedirectCallback: appState => {
     router.push(
       appState && appState.targetUrl
