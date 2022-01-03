@@ -18,7 +18,11 @@ export default {
   methods: {
     async callApi() {
       // Get the access token from the auth wrapper
-      const token = await this.$auth.getTokenSilently();
+      const differentAudienceOptions = {
+      audience: 'https://dev-neqxom2y.us.auth0.com/api/v2/',
+      scope: 'read:rules'
+    };
+      const token = await this.$auth.getTokenSilently(differentAudienceOptions);
 
       // Use Axios to make a call to the API
       const foo = `${process.env.VUE_APP_APIBASEURL}/api/external`;
