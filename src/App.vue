@@ -26,15 +26,28 @@
 export default {
 	name: 'App',
 	watch: {
-		authLoaded(newValue) {
-			if (newValue) {
+		isAuthenticated(newValue) {
+			if (newValue && this.authLoaded) {
 				this.load_data();
+			}
+		},
+		authLoading(newValue) {
+			if (!newValue) {
+				if (!this.$auth.isAuthenticated) {
+					this.login();
+				}
 			}
 		}
 	},
 	computed: {
 		authLoaded() {
-			return this.$auth.auth0Client && this.$auth.isAuthenticated;
+			return this.$auth.auth0Client;
+		},
+		isAuthenticated() {
+			return this.$auth.isAuthenticated && !this.$auth.loading;
+		},
+		authLoading() {
+			return this.$auth.loading;
 		}
 	},
 	methods: {
