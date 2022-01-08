@@ -15,7 +15,9 @@
 			<v-btn v-if="$auth.isAuthenticated" @click="logout">Log out</v-btn>
     	</div>
 	</div>
-	<router-view />
+	<div v-if="$auth.isAuthenticated">
+		<router-view />
+	</div>
 </v-app>
 </template>
 
@@ -36,7 +38,7 @@ export default {
 	},
 	computed: {
 		authLoaded() {
-			return this.$auth.auth0Client;
+			return this.$auth.auth0Client && this.$auth.isAuthenticated;
 		}
 	},
 	methods: {
