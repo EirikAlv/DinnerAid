@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Profile from '../views/Profile.vue'
+import Groceries from '../views/Groceries.vue'
+import Recipes from '../views/Recipes.vue'
 
 import { authGuard } from "../auth/authGuard";
 
@@ -8,6 +10,16 @@ import { authGuard } from "../auth/authGuard";
 Vue.use(VueRouter)
 
 const routes = [
+  {
+    path: "/",
+    name: "Home",
+    component: Groceries,
+  },
+  {
+    path: "/recipes",
+    name: "Recipes",
+    component: Recipes,
+  },
   {
     path: '/about',
     name: 'About',

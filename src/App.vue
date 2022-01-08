@@ -3,6 +3,7 @@
 	<div>
 		<router-link to="/">Home</router-link>|
 		<router-link to="/about">About</router-link>|
+		<router-link to="/recipes">Manage Recipes</router-link>|
 
 		<!-- NEW - add a route to the profile page -->
 		<router-link v-if="$auth.isAuthenticated" to="/profile">Profile</router-link>
@@ -26,6 +27,18 @@ export default {
 	data: () => ({
 		
 	}),
+	watch: {
+		authLoaded(newValue) {
+			if (newValue) {
+				this.load_data();
+			}
+		}
+	},
+	computed: {
+		authLoaded() {
+			return this.$auth.auth0Client;
+		}
+	},
 	methods: {
 		login() {
 			this.$auth.loginWithRedirect();
@@ -35,6 +48,11 @@ export default {
 			this.$auth.logout({
 				returnTo: window.location.origin
 			});
+		},
+		load_data: async function() {
+			const token = await this.$auth.getTokenSilently();
+			this.$store.dispatch('a_load_groceries', token);
+			this.$store.dispatch('a_load_recipes', token);
 		}
 	},
 };
