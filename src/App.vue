@@ -26,9 +26,6 @@
 export default {
 	name: 'App',
 
-	data: () => ({
-		
-	}),
 	watch: {
 		authLoaded(newValue) {
 			if (newValue) {
