@@ -64,6 +64,7 @@ export default {
 			const token = await this.$auth.getTokenSilently();
 			this.$store.dispatch('a_load_groceries', token);
 			this.$store.dispatch('a_load_recipes', token);
+			this.$store.dispatch('a_load_UOM', token);
 		}
 	},
 };

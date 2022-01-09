@@ -4,9 +4,9 @@ const baseUrl = `${process.env.VUE_APP_APIBASEURL ?? 'http://localhost:5000/api/
 
 export async function get_groceries(token) {return await get_async('groceries', token)}
 export async function get_all_recipes(token) {return await get_async('recipes', token)}
-export async function getUOM() {return await get_async('uom')}
+export async function getUOM(token) {return await get_async('uom', token)}
 
-export async function saveGrocery(body) {return post_async('saveGrocery', body)}
+export async function save_grocery(body) {return post_async('saveGrocery', body)}
 export async function editGrocery(body) {return post_async('editGrocery', body)}
 export async function saveRecipe(body) {return  post_async('saveRecipe', body)}
 export async function editRecipe(body) {return post_async('editRecipe', body)}
