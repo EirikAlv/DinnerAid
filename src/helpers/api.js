@@ -6,9 +6,9 @@ export async function get_groceries(token) {return await get_async('groceries', 
 export async function get_all_recipes(token) {return await get_async('recipes', token)}
 export async function getUOM(token) {return await get_async('uom', token)}
 
-export async function save_grocery(body) {return post_async('saveGrocery', body)}
+export async function save_grocery(body, token) {return post_async('saveGrocery', body, token)}
 export async function editGrocery(body) {return post_async('editGrocery', body)}
-export async function saveRecipe(body) {return  post_async('saveRecipe', body)}
+export async function save_recipe(body, token) {return  post_async('saveRecipe', body, token)}
 export async function editRecipe(body) {return post_async('editRecipe', body)}
 export async function orderToTodo(body) {return post_async('orderRecipe', body)}
 
@@ -26,8 +26,12 @@ async function get_async(endpoint, token) {
     return res.data;
 }
 
-async function post_async(endpoint, body) {
-    return axios.post(`${baseUrl}${endpoint}`, body);
+async function post_async(endpoint, body, token) {
+    return await axios.post(`${baseUrl}${endpoint}`, body, {
+        headers: {
+            Authorization: `Bearer ${token}`    // send the access token through the 'Authorization' header
+        }
+    });
 }
 
 async function delete_async(endpoint, body) {

@@ -49,8 +49,8 @@ export default {
     },
     methods: {
         save_grocery: async function() {
-            await save_grocery(this.grocery);
             const token = await this.$auth.getTokenSilently();
+            await save_grocery(this.grocery, token);
             this.$store.dispatch('a_refresh_store', token);
             this.grocery = {...this.groceryTemplate};
         },

@@ -1,22 +1,24 @@
 <template>
 <v-app>
-	<div>
-		<router-link to="/">Home</router-link>|
-		<router-link to="/about">About</router-link>|
-		<router-link to="/recipes">Manage Recipes</router-link>|
+	<div class="app-margin">
+		<div>
+			<router-link to="/">Home</router-link>|
+			<router-link to="/about">About</router-link>|
+			<router-link to="/recipes">Manage Recipes</router-link>|
 
-		<!-- NEW - add a route to the profile page -->
-		<router-link v-if="$auth.isAuthenticated" to="/profile">Profile</router-link>
+			<!-- NEW - add a route to the profile page -->
+			<router-link v-if="$auth.isAuthenticated" to="/profile">Profile</router-link>
 
-		<div v-if="!$auth.loading">
-			<!-- show login when not authenticated -->
-			<v-btn v-if="!$auth.isAuthenticated" @click="login">Log in</v-btn>
-			<!-- show logout when authenticated -->
-			<v-btn v-if="$auth.isAuthenticated" @click="logout">Log out</v-btn>
-    	</div>
-	</div>
-	<div v-if="$auth.isAuthenticated">
-		<router-view />
+			<div v-if="!$auth.loading">
+				<!-- show login when not authenticated -->
+				<v-btn v-if="!$auth.isAuthenticated" @click="login">Log in</v-btn>
+				<!-- show logout when authenticated -->
+				<v-btn v-if="$auth.isAuthenticated" @click="logout">Log out</v-btn>
+			</div>
+		</div>
+		<div v-if="$auth.isAuthenticated">
+			<router-view />
+		</div>
 	</div>
 </v-app>
 </template>
@@ -69,3 +71,11 @@ export default {
 	},
 };
 </script>
+<style scoped>
+.app-margin{
+	margin-top: 20px;
+	margin-right: 10vw;
+	margin-left: 10vw;
+	margin-bottom: 100px;
+}
+</style>

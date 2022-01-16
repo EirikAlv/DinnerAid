@@ -3,8 +3,13 @@
         :headers="headers"
         :items="tableData"
         :items-per-page="5"
-        class="elevation-1"
-    ></v-data-table>
+        class="elevation-1">
+            <template
+                v-for="(column, index) in headers"
+                v-slot:[`item.${column.value}`] = "{ item }">
+                <span :key="index" class="hover-pointer" @click="on_click(item[`${column.value}`])">{{ item[`${column.value}`]}}</span>
+            </template>
+    </v-data-table>
 </template>
 
 <script>
@@ -38,12 +43,16 @@ export default {
         }
     },
     methods: {
-        
+        on_click(item) {
+            this.$emit('clickEvent', item);
+        }
     },
     
 }
 </script>
 
-<style>
-
+<style scoped>
+    .hover-pointer {
+        cursor: pointer;
+    }
 </style>
