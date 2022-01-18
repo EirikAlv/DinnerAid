@@ -7,9 +7,9 @@ export async function get_all_recipes(token) {return await get_async('recipes', 
 export async function getUOM(token) {return await get_async('uom', token)}
 
 export async function save_grocery(body, token) {return post_async('saveGrocery', body, token)}
-export async function editGrocery(body) {return post_async('editGrocery', body)}
+export async function edit_grocery(body, token) {return post_async('editGrocery', body, token)}
 export async function save_recipe(body, token) {return  post_async('saveRecipe', body, token)}
-export async function editRecipe(body) {return post_async('editRecipe', body)}
+export async function edit_recipe(body, token) {return post_async('editRecipe', body, token)}
 export async function orderToTodo(body) {return post_async('orderRecipe', body)}
 
 export async function deleteRecipe(body) {return await delete_async('deleteRecipe', body)}
