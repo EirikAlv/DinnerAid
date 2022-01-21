@@ -10,7 +10,11 @@
             v-if="dropdown_selected"
             :title="dropdown_selected"
             @cancel="is_editing = false" />
-
+        <v-btn 
+            v-if="dropdown_selected"
+            @click="delete_recipe" >
+            Delete
+        </v-btn>
         <v-select
             v-if="!is_creating"
             :items="recipe_dropdown_list"
@@ -30,6 +34,8 @@
 import DisplayRecipe from '../components/DisplayRecipe.vue'
 import RecipeMaker from '../components/RecipeMaker.vue'
 import RecipeEditor from '../components/RecipeEditor.vue'
+import { delete_recipe } from '../helpers/api'
+
 
 export default {
     components: {
@@ -52,6 +58,14 @@ export default {
     methods: {
         dropdown_click(value) {
             this.dropdown_selected = value;
+        },
+        delete_recipe: async function() {
+            const token = await this.$auth.getTokenSilently();
+
+            await delete_recipe({'Name': this.dropdown_selected}, token);
+            this.dropdown_selected = null;
+            this.$store.dispatch('a_refresh_store', token);
+
         }
     },
 
