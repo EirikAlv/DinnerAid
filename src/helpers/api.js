@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const baseUrl = process.env.VUE_APP_ENVIRONMENT === 'DEV' ? 'http://localhost:5000/api/' : `${process.env.VUE_APP_APIBASEURL}'/api/'`
+const baseUrl = process.env.VUE_APP_ENVIRONMENT === 'DEV' ? 'http://localhost:5000/api/' : `${process.env.VUE_APP_APIBASEURL}/api/`
 
 export async function get_groceries(token) {return await get_async('groceries', token)}
 export async function get_all_recipes(token) {return await get_async('recipes', token)}
