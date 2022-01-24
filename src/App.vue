@@ -1,21 +1,23 @@
 <template>
 <v-app>
-	<div class="app-margin">
-		<div>
-			<router-link to="/">Home</router-link>|
-			<router-link to="/about">About</router-link>|
-			<router-link to="/recipes">Manage Recipes</router-link>|
-
-			<!-- NEW - add a route to the profile page -->
-			<router-link v-if="$auth.isAuthenticated" to="/profile">Profile</router-link>
-
+	<div>
+		<v-toolbar dark flat>
+			<v-toolbar-title>Dinner aid</v-toolbar-title>
+			<v-spacer></v-spacer>
 			<div v-if="!$auth.loading">
 				<!-- show login when not authenticated -->
 				<v-btn v-if="!$auth.isAuthenticated" @click="login">Log in</v-btn>
 				<!-- show logout when authenticated -->
 				<v-btn v-if="$auth.isAuthenticated" @click="logout">Log out</v-btn>
 			</div>
-		</div>
+		</v-toolbar>
+		<v-tabs centered>
+			<v-tab to="/">Groceries</v-tab>
+			<v-tab to="/recipes">Recipes</v-tab>
+		</v-tabs>
+
+	</div>
+	<div class="app-margin">
 		<div v-if="$auth.isAuthenticated">
 			<router-view />
 		</div>
@@ -73,7 +75,6 @@ export default {
 </script>
 <style scoped>
 .app-margin{
-	margin-top: 20px;
 	margin-right: 10vw;
 	margin-left: 10vw;
 	margin-bottom: 100px;

@@ -3,16 +3,12 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import vuetify from './plugins/vuetify'
+import "./css/styles.css";
 
 // Import the Auth0 configuration
 let domain = process.env.VUE_APP_DOMAIN
 let clientId = process.env.VUE_APP_CLIENTID
 let audience = process.env.VUE_APP_AUDIENCE
-if (!domain && !clientId) {
-	// let config = require("../auth_config.json");
-	// domain = config.domain;
-	// clientId = config.clientId;
-}
 
 // Import the plugin here
 import { Auth0Plugin } from "./auth";
