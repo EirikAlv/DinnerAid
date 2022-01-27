@@ -20,7 +20,9 @@
                         @clickEvent="add_to_order" />
                     <ShoppingListEditor
                         v-model="orders" />
-                    <v-btn @click="save_recipe">
+                    <v-btn
+                        :disabled="!hasChanged || !correctAmount" 
+                        @click="save_recipe">
                         Save
                     </v-btn>
                 </v-container>
@@ -50,10 +52,16 @@ export default {
         return {
             dialog: false,
             orders: {},
+            originalRecipeGroceries: [],
         }
     },
     mounted () {
-        this.orders = this.$store.state.recipes.find(x => x.Name === this.title).Table;
+        this.loadForm(this.title);
+    },
+    watch: {
+        title(newValue) {
+            this.loadForm(newValue);
+        }
     },
     computed: {
         current_recipe_groceries() {
@@ -62,9 +70,22 @@ export default {
         mapped_groceries() {
             return make_grocery_table_list(this.$store.state.groceries);
         },
+        hasChanged() {
+            let flatOrders = this.orders.flatMap(x => Object.values(x)).sort();
+            let flatOriginals = this.originalRecipeGroceries.flatMap(x => Object.values(x)).sort();
+            return flatOrders.some((x, i) => `${x}` !== `${flatOriginals[i]}`);
+        },
+        correctAmount() {
+            let amounts = this.orders.map(x => parseInt(x.amount));
+            return amounts.every(a => !isNaN(a));
+        }
     },
     methods: {
         add_to_order(food) {
+            const found = this.orders.find(o => o.norwegian === food);
+            if (found) 
+                return
+
             let grocery = this.$store.state.groceries.find(g => g.norwegian === food);
             grocery.amount = grocery.standard_quantity;
             this.orders.push(grocery);
@@ -79,6 +100,11 @@ export default {
             await edit_recipe(obj, token);
             await this.$store.dispatch('a_refresh_store', token);
             this.dialog = false;
+            this.loadForm(this.title);
+        },
+        loadForm(recipeName) {
+            this.orders = this.$store.state.recipes.find(x => x.Name === recipeName).Table;
+            this.originalRecipeGroceries = JSON.parse(JSON.stringify(this.orders));
         }
     },
 }

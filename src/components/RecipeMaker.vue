@@ -54,6 +54,10 @@ export default {
     },
     methods: {
         add_to_order(food) {
+            const found = this.orders.find(o => o.norwegian === food);
+            if (found) 
+                return 
+                
             let grocery = this.$store.state.groceries.find(g => g.norwegian === food);
             grocery.amount = grocery.standard_quantity;
             this.orders.push(grocery);

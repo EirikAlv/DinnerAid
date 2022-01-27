@@ -58,6 +58,11 @@ export default {
             numberOfColumns: 3,
         }
     },
+    watch: {
+        value(newValue) {
+            this.tableData = newValue;
+        }
+    },
     computed: {
         rowCount() {
             let rows = Number.parseInt(this.tableData.length / this.numberOfColumns);
