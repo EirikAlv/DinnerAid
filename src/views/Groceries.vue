@@ -1,22 +1,14 @@
 <template>
     <div v-if="$store.state.groceries">
-        <h1>This is groceries</h1>
+        <GroceryMaker            
+            :selected_grocery="selected_grocery"
+            @done="stop_editing" />
         <div v-if="table">
             <BasicTable 
                 v-if="table"
                 :tableData="table"
                 @clickEvent="start_editing($event)" />
-        </div>
-
-        <v-btn @click="is_creating = true">
-            Create grocery
-        </v-btn>
-        
-        <GroceryMaker
-            v-if="is_creating || is_editing"
-            :selected_grocery="selected_grocery"
-            @done="stop_editing" />
-
+        </div>        
     </div>
 </template>
 
