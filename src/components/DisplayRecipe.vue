@@ -13,7 +13,7 @@
 <script>
 import { makeRecipeTableWithAmount } from '../helpers/FoodHelper'
 import { orderToTodo } from '../helpers/api'
-import BasicTable from '../components/BasicTable.vue'
+import BasicTable from './shared/BasicTable.vue'
 import AccessWrapper from '../components/AccessWrapper.vue'
 
 export default {

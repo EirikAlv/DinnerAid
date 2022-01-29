@@ -25,7 +25,7 @@
 <script>
 import { make_grocery_table_list } from '../helpers/FoodHelper'
 import { save_recipe } from '../helpers/api'
-import BasicTable from '../components/BasicTable.vue'
+import BasicTable from './shared/BasicTable.vue'
 import ShoppingListEditor from '../components/ShoppingListEditor.vue'
 
 export default {
@@ -38,6 +38,11 @@ export default {
             title: '',
             orders: [],
             correctAmount: true
+        }
+    },
+    watch: {
+        orders(newValue) {
+            this.check_amount(newValue);
         }
     },
     computed: {

@@ -4,23 +4,28 @@
             :selected_grocery="selected_grocery"
             @done="stop_editing" />
         <div v-if="table">
-            <BasicTable 
+            <!-- <BasicTable 
                 v-if="table"
                 :tableData="table"
-                @clickEvent="start_editing($event)" />
+                @clickEvent="start_editing($event)" /> -->
+            <DynamicTable 
+                :tableData="table"
+                @clickEvent="start_editing($event)"/>
         </div>        
     </div>
 </template>
 
 <script>
 import { make_grocery_table_list } from '../helpers/FoodHelper'
-import BasicTable from '../components/BasicTable.vue'
+import BasicTable from '../components/shared/BasicTable.vue'
 import GroceryMaker from '../components/GroceryMaker.vue'
+import DynamicTable from '../components/shared/DynamicTable.vue'
 
 export default {
     components: {
         BasicTable,
         GroceryMaker,
+        DynamicTable,
     },
     data() {
         return {

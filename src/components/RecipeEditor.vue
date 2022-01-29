@@ -34,7 +34,7 @@
 <script>
 import { makeRecipeTableWithAmount, make_grocery_table_list } from '../helpers/FoodHelper'
 import { edit_recipe } from '../helpers/api'
-import BasicTable from '../components/BasicTable.vue'
+import BasicTable from './shared/BasicTable.vue'
 import ShoppingListEditor from '../components/ShoppingListEditor.vue'
 
 export default {

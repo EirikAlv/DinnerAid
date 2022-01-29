@@ -1,15 +1,17 @@
 <template>
-    <v-data-table
-        :headers="headers"
-        :items="tableData"
-        :items-per-page="5"
-        class="elevation-1">
-            <template
-                v-for="(column, index) in headers"
-                v-slot:[`item.${column.value}`] = "{ item }">
-                <span :key="index" class="hover-pointer" @click="on_click(item[`${column.value}`])">{{ item[`${column.value}`]}}</span>
-            </template>
-    </v-data-table>
+    <div>
+        <v-data-table
+            :headers="headers"
+            :items="tableData"
+            :items-per-page="5"
+            class="elevation-1">
+                <template
+                    v-for="(column, index) in headers"
+                    v-slot:[`item.${column.value}`] = "{ item }">
+                    <span :key="index" class="hover-pointer" @click="on_click(item[`${column.value}`])">{{ item[`${column.value}`]}}</span>
+                </template>
+        </v-data-table>
+    </div>
 </template>
 
 <script>
@@ -39,8 +41,7 @@ export default {
                         }
                     });
             }
-
-        }
+        },
     },
     methods: {
         on_click(item) {
