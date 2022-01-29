@@ -21,6 +21,8 @@
                                 <v-text-field
                                     class="input-text-align-r"
                                     dense
+                                    @input="$emit('update', value)"
+                                    :rules="[rules.number]"
                                     v-model="k.amount" >
                                 </v-text-field>
                             </span>
@@ -56,6 +58,9 @@ export default {
         return {
             tableData: this.value,
             numberOfColumns: 3,
+            rules: {
+                number: value => !isNaN(parseInt(value)) || ''
+            }
         }
     },
     watch: {

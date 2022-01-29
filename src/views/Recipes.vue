@@ -1,17 +1,16 @@
 <template>
     <div>
-        <h1>This is recipes</h1>
         <v-btn
             v-if="!is_creating"
             @click="is_creating = true" >
             Create recipe
         </v-btn>
         <RecipeEditor
-            v-if="dropdown_selected"
+            v-if="dropdown_selected && !is_creating"
             :title="dropdown_selected"
             @cancel="is_editing = false" />
         <v-btn 
-            v-if="dropdown_selected"
+            v-if="dropdown_selected && !is_creating"
             @click="delete_recipe" >
             Delete
         </v-btn>

@@ -5,16 +5,20 @@
                 label="Recipe name"
                 v-model="title" />
             <v-btn
-                :disabled="!can_save" 
+                :disabled="!can_save || !correctAmount" 
                 @click="save_recipe" >
                 Save
+            </v-btn>
+            <v-btn @click="$emit('doneMaking')">
+                Cancel
             </v-btn>
         </v-row>
         <BasicTable 
             :tableData="mapped_groceries"
             @clickEvent="add_to_order" />
         <ShoppingListEditor 
-            v-model="orders"/>
+            v-model="orders"
+            @update="check_amount"/>
     </div>
 </template>
 
@@ -32,7 +36,8 @@ export default {
     data() {
         return {
             title: '',
-            orders: []
+            orders: [],
+            correctAmount: true
         }
     },
     computed: {
@@ -75,6 +80,10 @@ export default {
             this.orders = [];
             this.$store.dispatch('a_refresh_store', token);
             this.$emit('doneMaking');
+        },
+        check_amount(input) {
+            let amounts = input.map(x => parseInt(x.amount));
+            this.correctAmount = amounts.every(a => !isNaN(a));
         }
         
     },
