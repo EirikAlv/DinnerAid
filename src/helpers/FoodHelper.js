@@ -43,13 +43,4 @@ function map_groceries(groceryTableTemplate, outputFormat) {
     return outTable;
 }
 
-export function makeRecipeTableWithAmount(groceries) {
-    let out = groceries?.map(x => {
-        return {
-            Amount: `${x.amount} ${x.uom}`,
-            Name: x.norwegian
-        }
-    })
 
-    return out;
-}

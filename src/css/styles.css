@@ -3,6 +3,12 @@
 .w-5p {
     width: 5%;
 }
+.w-50p {
+    width: 50%;
+}
+.w-100p {
+    width: 100%;
+}
 .w-2em {
     width: 2em;
 }
@@ -23,6 +29,13 @@
 .mr-5p {
     margin-right: 5%;
 }
+.mt-3p {
+    margin-top: 3%;
+}
+.mlr-10p {
+    margin-left: 10%;
+    margin-right: 10%;
+}
 
 /* Flex */
 .flex-row {
@@ -35,6 +48,12 @@
 .justify-center {
     justify-content: center;
 }
+.justify-end {
+    justify-content: end;
+}
+.flex-grow-1 {
+    flex-grow: 1;
+}
 
 /* Text align */
 .text-align-r {
@@ -42,6 +61,9 @@
 }
 .text-align-l {
     text-align: left;
+}
+.text-align-c {
+    text-align: center;
 }
 
 /* Input */

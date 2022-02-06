@@ -32,7 +32,7 @@
 </template>
 
 <script>
-import { makeRecipeTableWithAmount, make_grocery_table_list } from '../helpers/FoodHelper'
+import { make_grocery_table_list } from '../helpers/FoodHelper'
 import { edit_recipe } from '../helpers/api'
 import BasicTable from './shared/BasicTable.vue'
 import ShoppingListEditor from '../components/ShoppingListEditor.vue'
@@ -64,9 +64,6 @@ export default {
         }
     },
     computed: {
-        current_recipe_groceries() {
-            return makeRecipeTableWithAmount(this.$store.state.recipes.find(x => x.Name === this.title)?.Table);
-        },
         mapped_groceries() {
             return make_grocery_table_list(this.$store.state.groceries);
         },
