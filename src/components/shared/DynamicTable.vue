@@ -8,9 +8,11 @@
             v-if="mobile"
             :items="headers"
             label="Sections"
+            :clearable="true"
             v-model="selected_section" />
         <BasicList 
-            v-if="mobile && selected_section.length > 0"
+            v-if="mobile && selected_section && selected_section.length > 0"
+            @clickEvent="$emit('clickEvent', $event)"
             :listData="list_data" />
     </div>
 </template>

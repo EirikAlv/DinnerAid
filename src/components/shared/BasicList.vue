@@ -1,7 +1,8 @@
 <template>
     <v-card flat>
         <v-list-item
-            v-for="(item, index) in list" :key="index">
+            v-for="(item, index) in list" :key="index"
+            @click="$emit('clickEvent', item)">
             <span> {{ item }} </span>
         </v-list-item>
     </v-card>

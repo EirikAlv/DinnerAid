@@ -15,9 +15,13 @@
             </v-card-title>
             <v-card-text>
                 <v-container>
-                    <BasicTable 
+                    <!-- <BasicTable 
                         :tableData="mapped_groceries"
-                        @clickEvent="add_to_order" />
+                        @clickEvent="add_to_order" /> -->
+                    <span>Add groceries:</span>
+                    <DynamicTable 
+                        :tableData="mapped_groceries"
+                        @clickEvent="add_to_order($event)"/>
                     <ShoppingListEditor
                         v-model="orders" />
                     <v-btn
@@ -36,11 +40,13 @@ import { make_grocery_table_list } from '../helpers/FoodHelper'
 import { edit_recipe } from '../helpers/api'
 import BasicTable from './shared/BasicTable.vue'
 import ShoppingListEditor from '../components/ShoppingListEditor.vue'
+import DynamicTable from '../components/shared/DynamicTable.vue'
 
 export default {
     components: {
         BasicTable,
         ShoppingListEditor,
+        DynamicTable,
     },
     props: {
         title: {
