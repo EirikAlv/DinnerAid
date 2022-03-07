@@ -4,10 +4,6 @@
             :selected_grocery="selected_grocery"
             @done="stop_editing" />
         <div v-if="table">
-            <!-- <BasicTable 
-                v-if="table"
-                :tableData="table"
-                @clickEvent="start_editing($event)" /> -->
             <DynamicTable 
                 :tableData="table"
                 @clickEvent="start_editing($event)"/>

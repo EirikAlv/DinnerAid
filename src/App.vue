@@ -4,6 +4,11 @@
 		<v-toolbar dark flat>
 			<v-toolbar-title>Dinner aid</v-toolbar-title>
 			<v-spacer></v-spacer>
+			<v-btn 
+				v-if="$router.currentRoute.name !== 'FrontPage'"
+				@click="$router.push('/')" >
+				Home
+			</v-btn>
 			<div v-if="!$auth.loading">
 				<!-- show login when not authenticated -->
 				<v-btn v-if="!$auth.isAuthenticated" @click="login">Log in</v-btn>
@@ -11,8 +16,10 @@
 				<v-btn v-if="$auth.isAuthenticated" @click="logout">Log out</v-btn>
 			</div>
 		</v-toolbar>
-		<v-tabs centered>
-			<v-tab to="/">Groceries</v-tab>
+		<v-tabs 
+			v-if="$router.currentRoute.name !== 'FrontPage'"
+			centered >
+			<v-tab to="/groceries">Groceries</v-tab>
 			<v-tab to="/recipes">Recipes</v-tab>
 		</v-tabs>
 
