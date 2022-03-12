@@ -93,6 +93,7 @@ export const useAuth0 = ({
       this.auth0Client = await createAuth0Client({
         ...options,
         client_id: options.clientId,
+        useRefreshTokens: true,
         redirect_uri: redirectUri
       });
 
